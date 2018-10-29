@@ -1,0 +1,7 @@
+# Backup files
+*.bak
+
+# Eclipse
+.buildpath
+.project
+.settings/

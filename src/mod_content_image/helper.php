@@ -60,7 +60,7 @@ class ModContentImageHelper {
 		elseif ($option == 'com_contact' && $view == 'contact') {
 			$id = Joomla\CMS\Factory::getApplication()->input->getInt('id');
 			$contact = self::getContactInfo($id);
-			$result['alt'] = $contact['title'];
+			$result['alt'] = $contact['name'];
 			if (JFile::exists(JPATH_BASE . '/' . $image_dir . '/article_' . $contact['alias'] . $extension)) {
 				$result['image'] = $image_dir . '/contact_' . $contact['alias'] . $extension;
 			}

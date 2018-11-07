@@ -13,5 +13,209 @@
         <filename>tmpl/index.html</filename>
     </files>
     <config>
+    	<fields name="params">
+    		<fieldset name="basic">
+    			<!-- Default module parameters -->
+    			<field 
+    				name="image_directory"
+    				type="text"
+    				label="Image directory"
+    				default="images/mod_content_image" 
+    			/>
+    			<field
+					name="show_default_image"
+					type="radio"
+					label="Show Default Image"
+					description="Show default image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field
+    				name="default_image"
+    				type="text"
+    				label="Default Image"
+    				default="default.png"
+    			/>
+    			<field type="spacer" hr="true" />
+    			
+    			
+    			<!-- Article Image Parameters -->
+    			<field type="spacer" name="spacer_article_image_parameters" label="&lt;b&gt;Article Image Parameters&lt;/b&gt;" />
+    			<field
+					name="show_article_image"
+					type="radio"
+					label="Show Article Image"
+					description="Show articlet image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field
+					name="show_default_article_image"
+					type="radio"
+					label="Show Default Article Image"
+					description="Show default article image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field 
+    				name="default_article_image"
+    				type="text"
+    				label="Default Article Image"
+    				default="article_default.png"
+    			/>
+    			<field 
+    				name="article_image_prefix"
+    				type="text"
+    				label="Article Image Prefix"
+    				default="article_"
+    			/>
+    			<field 
+    				name="article_image_name"
+    				type="list"
+    				label="Article Image Name"
+    				default="alias"
+    				>
+    				<option value="alias">article-alias</option>
+    				<option value="id">article-id</option>
+    			</field>
+    			<field name="article_image_extension"
+    				type="text"
+    				label="Article Image Extension"
+    				default=".png"
+    			/>
+    			<field type="spacer" hr="true" />
+    			
+    			
+    			<!-- Category Image Parameters -->
+    			<field type="spacer" name="spacer_category_image_parameters" label="&lt;b&gt;Category Image Parameters&lt;/b&gt;" />
+    			<field
+					name="show_category_image"
+					type="radio"
+					label="Show Category Image"
+					description="Show category image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field
+					name="show_default_category_image"
+					type="radio"
+					label="Show Default Category Image"
+					description="Show default category image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field 
+    				name="default_category_image"
+    				type="text"
+    				label="Default Category Image"
+    				default="category_default.png"
+    			/>
+    			<field
+    				name="category_image_prefix"
+    				type="text"
+    				label="Category Image Prefix"
+    				default="category_"
+    			/>
+    			<field
+    				name="category_image_name"
+    				type="list"
+    				label="Category Image Name"
+    				default="alias"
+    				>
+    				<option value="alias">category-alias</option>
+    				<option value="id">category-id</option>
+    			</field>
+    			<field name="category_image_extension"
+    				type="text"
+    				label="Article Image Extension"
+    				default=".png"
+    			/>
+    			<field type="spacer" hr="true" />
+    			
+    			
+    			<!-- Contact Image Parameters -->
+    			<field type="spacer" name="spacer_contact_image_parameters" label="&lt;b&gt;Contact Image Parameters&lt;/b&gt;" />
+    			<field
+					name="show_contact_image"
+					type="radio"
+					label="Show Contact Image"
+					description="Show contact image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field
+					name="show_default_contact_image"
+					type="radio"
+					label="Show Default Contact Image"
+					description="Show default contact image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field 
+    				name="default_contact_image"
+    				type="text"
+    				label="Default Contact Image"
+    				default="contact_default.png"
+    			/>
+    			<field 
+    				name="contact_image_prefix"
+    				type="text"
+    				label="Contact Image Prefix"
+    				default="contact_"
+    			/>
+    			<field name="contact_image_name"
+    				type="list"
+    				label="Contact Image Name"
+    				default="alias"
+    				>
+    				<option value="alias">contact-alias</option>
+    				<option value="id">contact-id</option>
+    			</field>
+    			<field 
+    				name="contact_image_extension"
+    				type="text"
+    				label="Article Image Extension"
+    				default=".png"
+    			/>
+    		</fieldset>
+    		
+    		<fieldset name="advanced">
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					rows="3"
+				/>
+			</fieldset>
+    	</fields>
     </config>
 </extension>

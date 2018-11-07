@@ -7,15 +7,28 @@
 class ModContentImageHelper {
 	/**
 	 * 
+	 * @param mixed $var
+	 */
+	private static function debug($var) {
+		echo '<pre>' . print_r($var, true) . '</pre>';
+	}
+	
+	/**
+	 * 
 	 * @param array $params
 	 * @return string
 	 */
 	public static function getData($params) {
+// 		self::debug($params);
+		
 		// Get option and view
 		$option = Joomla\CMS\Factory::getApplication()->input->get('option');
 		$view = Joomla\CMS\Factory::getApplication()->input->get('view');
 		
-		$image_dir = 'images/mod_content_image/';
+		$image_dir = $params['image_directory'];
+		if (!file_exists(JPATH_BASE . DIRECTORY_SEPARATOR . $image_dir)) {
+			
+		}
 		$extension = '.png';
 		
 		// Initialize result
@@ -30,7 +43,6 @@ class ModContentImageHelper {
 			$id = Joomla\CMS\Factory::getApplication()->input->getInt('id');
 			$article = self::getArticleInfo($id);
 			$result['alt'] = $article['title'];
-			
 			if (JFile::exists(JPATH_BASE . '/' . $image_dir . '/article_' . $article['alias'] . $extension)) {
 				$result['image'] = $image_dir . '/article_' . $article['alias'] . $extension;
 			}

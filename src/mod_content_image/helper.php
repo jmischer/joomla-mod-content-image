@@ -39,12 +39,17 @@ class ModContentImageHelper {
 			$image = self::getCategoryImageData($params);
 		}
 		
-		// GEt com_contact contact image
-		elseif ($option == 'com_contact' && $view == 'contact') {
-			$image = self::getContactImageData($params);
-		}
+		// Get com_contact contact image
+// 		elseif ($option == 'com_contact' && $view == 'contact') {
+// 			$image = self::getContactImageData($params);
+// 		}
 		
 		// Get default content image
+		else {
+			$image = self::getDefaultContentImageData($option, $view, $params);
+		}
+		
+		// Get default image
 		if (!$image) {
 			$image = self::getDefaultImageData($params);
 		}
@@ -220,6 +225,48 @@ class ModContentImageHelper {
 	}
 	
 	/**
+	 * 
+	 * @param string $option
+	 * @param string $view
+	 * @param mixed $params
+	 * @return array|false
+	 */
+	protected static function getDefaultContentImageData($option, $view, $params) {
+		if (!$params['show_default_content_image']) {
+			return false;
+		}
+		
+		// Get image dir
+		$image_dir = $params['image_directory'];
+		
+		// Get name
+		$name = $params['default_content_image_name'];
+		
+		// Match replace name params
+		$matches = [];
+		preg_match_all('#{([^}]+)}#', $name, $matches);
+		foreach ($matches[0] as $i => $replace) {
+			$param = $matches[1][$i];
+			$value = Joomla\CMS\Factory::getApplication()->input->get($param, '');
+			$name = preg_replace("#$replace#", $value, $name); 
+		}
+		
+		// Check image path
+		$image_path = self::checkImagePath($image_dir, $name);
+		
+		// Return null, if no image path found
+		if (!$image_path) {
+			return false;
+		}
+		
+		// Return result
+		return [
+			'path' => $image_path,
+			'alt' => "Image $option $view"
+		];
+	}
+	
+	/**
 	 *
 	 * @param mixed $params
 	 * @return array|false
@@ -276,6 +323,7 @@ class ModContentImageHelper {
 		// Build path
 		$path = $imageDir . DIRECTORY_SEPARATOR . $options['prefix'] . $name;
 		$fs_path = JPATH_BASE . DIRECTORY_SEPARATOR . $path;
+// 		self::debug([$path, $fs_path]);
 		
 		// Return false, if image does not exist
 		if (!JFile::exists($fs_path)) {
@@ -285,8 +333,6 @@ class ModContentImageHelper {
 		// Return path
 		return $path;
 	}
-	
-	
 	
 	/**
 	 * 

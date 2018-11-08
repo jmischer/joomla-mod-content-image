@@ -201,11 +201,6 @@
     				label="Default Content Image Name"
     				default="{option}_{view}"
     			/>
-    			<field name="default_content_image_extension"
-    				type="text"
-    				label="Default Content Image Extension"
-    				default=".png"
-    			/>
     		</fieldset>
     		
     		<fieldset name="advanced">

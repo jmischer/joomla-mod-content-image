@@ -5,10 +5,12 @@
 // No direct access
 defined('_JEXEC') or die;
 
-// Get image
-$image = $data['image'];
-if (!isset($image)) {
+// Check image data
+if (!isset($data['image'])) {
 	return;
 }
+
+// Get image data
+$image = $data['image'];
 ?>
-<div class="content-image <?=$data['type']?>"><?= JHtml::image($image, $data['alt']); ?></div>
+<div class="content-image <?=$data['type']?>"><?= JHtml::image($image['path'], $image['alt']); ?></div>

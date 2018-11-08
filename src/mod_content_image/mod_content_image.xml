@@ -81,15 +81,6 @@
     				label="Article Image Prefix"
     				default="article_"
     			/>
-    			<field 
-    				name="article_image_name"
-    				type="list"
-    				label="Article Image Name"
-    				default="alias"
-    				>
-    				<option value="alias">article-alias</option>
-    				<option value="id">article-id</option>
-    			</field>
     			<field name="article_image_extension"
     				type="text"
     				label="Article Image Extension"
@@ -136,15 +127,6 @@
     				label="Category Image Prefix"
     				default="category_"
     			/>
-    			<field
-    				name="category_image_name"
-    				type="list"
-    				label="Category Image Name"
-    				default="alias"
-    				>
-    				<option value="alias">category-alias</option>
-    				<option value="id">category-id</option>
-    			</field>
     			<field name="category_image_extension"
     				type="text"
     				label="Article Image Extension"
@@ -191,18 +173,37 @@
     				label="Contact Image Prefix"
     				default="contact_"
     			/>
-    			<field name="contact_image_name"
-    				type="list"
-    				label="Contact Image Name"
-    				default="alias"
-    				>
-    				<option value="alias">contact-alias</option>
-    				<option value="id">contact-id</option>
-    			</field>
     			<field 
     				name="contact_image_extension"
     				type="text"
     				label="Article Image Extension"
+    				default=".png"
+    			/>
+    			<field type="spacer" hr="true" />
+    			
+    			<!-- Default Content Image Parameters -->
+    			<field type="spacer" name="spacer_default_content_image_parameters" label="&lt;b&gt;Default Content Image Parameters&lt;/b&gt;" />
+    			<field
+					name="show_default_content_image"
+					type="radio"
+					label="Show Default Content Image"
+					description="Show default content image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field
+    				name="default_content_image_name"
+    				type="text"
+    				label="Default Content Image Name"
+    				default="{option}_{view}"
+    			/>
+    			<field name="default_content_image_extension"
+    				type="text"
+    				label="Default Content Image Extension"
     				default=".png"
     			/>
     		</fieldset>

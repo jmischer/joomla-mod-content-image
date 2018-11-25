@@ -42,6 +42,28 @@
     			/>
     			<field type="spacer" hr="true" />
     			
+    			<!-- Default Content Image Parameters -->
+    			<field type="spacer" name="spacer_default_content_image_parameters" label="&lt;b&gt;Default Content Image Parameters&lt;/b&gt;" />
+    			<field
+					name="show_default_content_image"
+					type="radio"
+					label="Show Default Content Image"
+					description="Show default content image (yes or no)"
+					class="btn-group btn-group-yesno"
+					default="1"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+    			<field
+    				name="default_content_image_name"
+    				type="text"
+    				label="Default Content Image Name"
+    				default="{option}_{view}_{itemId}.png"
+    			/>
+    			<field type="spacer" hr="true" />
+    			
     			
     			<!-- Article Image Parameters -->
     			<field type="spacer" name="spacer_article_image_parameters" label="&lt;b&gt;Article Image Parameters&lt;/b&gt;" />
@@ -76,6 +98,26 @@
     				default="article_default.png"
     			/>
     			<field 
+    				name="article_image_name"
+    				type="text"
+    				label="Article Image Name"
+    				default="article_{alias}.png"
+    			/>
+    			<field 
+    				name="alternative_article_image_name"
+    				type="text"
+    				label="Alternative Article Image Name"
+    				default="article_{cat_alias}.png"
+    			/>
+    			<field
+    				name="hide_for_article_ids"
+    				type="textarea"
+    				label="Hide in Articles"
+					description="Do not show for articles which ID is in this comma seperated ID list."
+    				default=""
+    			/>
+    			<!--
+    			<field 
     				name="article_image_prefix"
     				type="text"
     				label="Article Image Prefix"
@@ -86,6 +128,7 @@
     				label="Article Image Extension"
     				default=".png"
     			/>
+    			-->
     			<field type="spacer" hr="true" />
     			
     			
@@ -121,6 +164,21 @@
     				label="Default Category Image"
     				default="category_default.png"
     			/>
+    			
+    			<field 
+    				name="category_image_name"
+    				type="text"
+    				label="Category Image Name"
+    				default="category_{alias}.png"
+    			/>
+    			<field
+    				name="hide_for_category_ids"
+    				type="textarea"
+    				label="Hide in Categories"
+					description="Do not show for categories which ID is in this comma seperated ID list."
+    				default=""
+    			/>
+    			<!--
     			<field
     				name="category_image_prefix"
     				type="text"
@@ -132,6 +190,7 @@
     				label="Article Image Extension"
     				default=".png"
     			/>
+    			-->
     			<field type="spacer" hr="true" />
     			
     			
@@ -168,6 +227,27 @@
     				default="contact_default.png"
     			/>
     			<field 
+    				name="contact_image_name"
+    				type="text"
+    				label="Contact Image Name"
+    				default="contact_{alias}.png"
+    			/>
+    			
+    			<field 
+    				name="alternative_contact_image_name"
+    				type="text"
+    				label="Alternative Contact Image Name"
+    				default="contact_{cat_alias}.png"
+    			/>
+    			<field
+    				name="hide_for_contact_ids"
+    				type="textarea"
+    				label="Hide in Contacts"
+					description="Do not show for contacts which ID is in this comma seperated ID list."
+    				default=""
+    			/>
+    			<!--
+    			<field 
     				name="contact_image_prefix"
     				type="text"
     				label="Contact Image Prefix"
@@ -179,28 +259,7 @@
     				label="Article Image Extension"
     				default=".png"
     			/>
-    			<field type="spacer" hr="true" />
-    			
-    			<!-- Default Content Image Parameters -->
-    			<field type="spacer" name="spacer_default_content_image_parameters" label="&lt;b&gt;Default Content Image Parameters&lt;/b&gt;" />
-    			<field
-					name="show_default_content_image"
-					type="radio"
-					label="Show Default Content Image"
-					description="Show default content image (yes or no)"
-					class="btn-group btn-group-yesno"
-					default="1"
-					filter="integer"
-					>
-					<option value="1">JYES</option>
-					<option value="0">JNO</option>
-				</field>
-    			<field
-    				name="default_content_image_name"
-    				type="text"
-    				label="Default Content Image Name"
-    				default="{option}_{view}"
-    			/>
+    			-->
     		</fieldset>
     		
     		<fieldset name="advanced">

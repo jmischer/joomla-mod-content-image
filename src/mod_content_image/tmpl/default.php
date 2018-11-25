@@ -1,16 +1,20 @@
 <?php
 /**
- * @var string $content_image
+ * @var mixed $data
+ * 
  */
 // No direct access
 defined('_JEXEC') or die;
 
-// Check image data
-if (!isset($data['image'])) {
+// Check data
+if (!$data) {
 	return;
 }
 
-// Get image data
+// Get image from data
 $image = $data['image'];
+if (!$image) {
+	return;
+}
 ?>
 <div class="content-image <?=$data['type']?>"><?= JHtml::image($image['path'], $image['alt']); ?></div>

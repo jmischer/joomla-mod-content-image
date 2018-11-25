@@ -271,10 +271,16 @@ class ModContentImageHelper {
 		
 		// Match placeholders
 		preg_match_all('#{([^}]+)}#', $str, $matches);
+		$place_holders = $matches[0];
+		$keys = $matches[1];
 		
 		// Loop over found placeholders
-		foreach ($matches[0] as $i => $replace) {
-			$str = preg_replace("#$replace#", $values[$matches[1][$i]] ?: '', $str);
+		foreach ($place_holders as $i => $replace) {
+			$key = $keys[$i];
+			if (!isset($values[$key])) {
+				continue;
+			}
+			$str = preg_replace("#$replace#", $values[$key], $str);
 		}
 		
 		// Return str

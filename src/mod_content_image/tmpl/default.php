@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * @var mixed $data
  * 
@@ -17,4 +19,6 @@ if (!$image) {
 	return;
 }
 ?>
-<div class="content-image <?=$data['type']?>"><?= JHtml::image($image['path'], $image['alt']); ?></div>
+<div class="content-image <?=$data['type']?>">
+	<?= HTMLHelper::image($image['path'], $image['alt']); ?>
+</div>

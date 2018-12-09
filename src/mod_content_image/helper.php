@@ -1,4 +1,7 @@
 <?php
+use Joomla\CMS\Table\Table;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 /**
  * 
  * @author jmischer
@@ -28,7 +31,7 @@ class ModContentImageHelper {
 	 */
 	public static function getData($params) {
 		// Get application
-		$app = ModContentImageHelper::getApplication();
+		$app = self::getApplication();
 		
 		// Get option and view
 		$option = $app->input->get('option');
@@ -44,39 +47,39 @@ class ModContentImageHelper {
 		// Get image by option and view
 		switch ("$option#$view") {
 			case "com_content#article":
-				if (ModContentImageHelper::checkHidden($id, $params['hide_for_article_ids'])) {
+				if (self::checkHidden($id, $params['hide_for_article_ids'])) {
 					return false;
 				}
-				$article = ModContentImageHelper::getArticleInfo($id);
-				$image = ModContentImageHelper::getArticleImageData($article,
+				$article = self::getArticleInfo($id);
+				$image = self::getArticleImageData($article,
 						$params);
 				break;
 			case "com_content#category":
-				if (ModContentImageHelper::checkHidden($id, $params['hide_for_category_ids'])) {
+				if (self::checkHidden($id, $params['hide_for_category_ids'])) {
 					return false;
 				}
-				$category = ModContentImageHelper::getCategoryInfo($id);
-				$image = ModContentImageHelper::getCategoryImageData($category,
+				$category = self::getCategoryInfo($id);
+				$image = self::getCategoryImageData($category,
 						$params);
 				break;
 			case "com_contact#contact":
-				if (ModContentImageHelper::checkHidden($id, $params['hide_for_contact_ids'])) {
+				if (self::checkHidden($id, $params['hide_for_contact_ids'])) {
 					return false;
 				}
-				$contact = ModContentImageHelper::getContactInfo($id);
-				$image = ModContentImageHelper::getContactImageData($contact,
+				$contact = self::getContactInfo($id);
+				$image = self::getContactImageData($contact,
 						$params);
 				break;
 			case "com_contact#category":
 			default:
-				$image = ModContentImageHelper::getDefaultContentImageData(
+				$image = self::getDefaultContentImageData(
 				$option, $view, $params);
 				break;
 		}
 
 		// Get default image
 		if (!$image) {
-			$image = ModContentImageHelper::getDefaultImageData($params);
+			$image = self::getDefaultImageData($params);
 		}
 		
 		// Return result
@@ -112,22 +115,22 @@ class ModContentImageHelper {
 		
 		// Initialize default properties
 		$image_dir = $params['image_directory'];
-		$image_name = ModContentImageHelper::replacePlaceholders($params['article_image_name'],
-				ModContentImageHelper::getApplication()->input->getArray() + $article);
+		$image_name = self::replacePlaceholders($params['article_image_name'],
+				self::getApplication()->input->getArray() + $article);
 		
 		// Get image path by article image name
-		$image_path = ModContentImageHelper::checkImagePath($image_dir, $image_name);
+		$image_path = self::checkImagePath($image_dir, $image_name);
 		
 		// Get image path by article category alias
 		if (!$image_path && $params['show_default_article_image']) {
-			$image_name = ModContentImageHelper::replacePlaceholders($params['alternative_article_image_name'],
-					ModContentImageHelper::getApplication()->input->getArray() + $article);
-			$image_path = ModContentImageHelper::checkImagePath($image_dir, $image_name);
+			$image_name = self::replacePlaceholders($params['alternative_article_image_name'],
+					self::getApplication()->input->getArray() + $article);
+			$image_path = self::checkImagePath($image_dir, $image_name);
 		}
 		
 		// Get image path for default article image
 		if (!$image_path && $params['show_default_article_image']) {
-			$image_path = ModContentImageHelper::checkImagePath($image_dir, $params['default_article_image']);
+			$image_path = self::checkImagePath($image_dir, $params['default_article_image']);
 		}
 		
 		// Return null, if no image path found
@@ -155,15 +158,15 @@ class ModContentImageHelper {
 		
 		// Initialize default properties
 		$image_dir = $params['image_directory'];
-		$image_name = ModContentImageHelper::replacePlaceholders($params['category_image_name'],
-				ModContentImageHelper::getApplication()->input->getArray() + $category);
+		$image_name = self::replacePlaceholders($params['category_image_name'],
+				self::getApplication()->input->getArray() + $category);
 		
 		// Get image path by category image name
-		$image_path = ModContentImageHelper::checkImagePath($image_dir, $image_name);
+		$image_path = self::checkImagePath($image_dir, $image_name);
 		
 		// Get image path for default category image
 		if (!$image_path && $params['show_default_category_image']) {
-			$image_path = ModContentImageHelper::checkImagePath($image_dir, $params['default_category_image']);
+			$image_path = self::checkImagePath($image_dir, $params['default_category_image']);
 		}
 		
 		// Return null, if no image path found
@@ -191,22 +194,22 @@ class ModContentImageHelper {
 		
 		// Initialize default properties
 		$image_dir = $params['image_directory'];
-		$image_name = ModContentImageHelper::replacePlaceholders($params['contact_image_name'],
-				ModContentImageHelper::getApplication()->input->getArray() + $contact);
+		$image_name = self::replacePlaceholders($params['contact_image_name'],
+				self::getApplication()->input->getArray() + $contact);
 		
 		// Get image path by contact image name
-		$image_path = ModContentImageHelper::checkImagePath($image_dir, $image_name);
+		$image_path = self::checkImagePath($image_dir, $image_name);
 		
 		// Get image path by contact contact alias
 		if (!$image_path && $params['show_default_contact_image']) {
-			$image_name = ModContentImageHelper::replacePlaceholders($params['alternative_contact_image_name'],
-					ModContentImageHelper::getApplication()->input->getArray() + $contact);
-			$image_path = ModContentImageHelper::checkImagePath($image_dir, $image_name);
+			$image_name = self::replacePlaceholders($params['alternative_contact_image_name'],
+					self::getApplication()->input->getArray() + $contact);
+			$image_path = self::checkImagePath($image_dir, $image_name);
 		}
 		
 		// Get image path for default contact image
 		if (!$image_path && $params['show_default_contact_image']) {
-			$image_path = ModContentImageHelper::checkImagePath($image_dir, $params['default_contact_image']);
+			$image_path = self::checkImagePath($image_dir, $params['default_contact_image']);
 		}
 		
 		// Return null, if no image path found
@@ -241,11 +244,11 @@ class ModContentImageHelper {
 		$name = $params['default_content_image_name'];
 		
 		// Replace placeholders in name
-		$name = ModContentImageHelper::replacePlaceholders($name, 
-				ModContentImageHelper::getApplication()->input->getArray());
+		$name = self::replacePlaceholders($name, 
+				self::getApplication()->input->getArray());
 		
 		// Check image path
-		$image_path = ModContentImageHelper::checkImagePath($image_dir, $name);
+		$image_path = self::checkImagePath($image_dir, $name);
 		
 		// Return null, if no image path found
 		if (!$image_path) {
@@ -303,7 +306,7 @@ class ModContentImageHelper {
 		$default_image = $params['default_image'];
 		
 		// Get image path by category image name
-		$image_path = ModContentImageHelper::checkImagePath($image_dir, $default_image);
+		$image_path = self::checkImagePath($image_dir, $default_image);
 		
 		// Return null, if no image path found
 		if (!$image_path) {
@@ -371,7 +374,7 @@ class ModContentImageHelper {
 		if (!$id) {
 			return null;
 		}
-		$db = ModContentImageHelper::getDBO();
+		$db = self::getDBO();
 		$query = $db->getQuery(true)
 			->select('a.id, a.title, a.alias, a.images, c.title as cat_title, c.alias as cat_alias')
 			->from('#__content a, #__categories c')
@@ -386,7 +389,7 @@ class ModContentImageHelper {
 	 * @return array
 	 */
 	protected static function getCategoryInfo($id) {
-		$db = ModContentImageHelper::getDBO();
+		$db = self::getDBO();
 		$query = $db->getQuery(true)
 			->select('id, title, alias, params')
 			->from('#__categories')
@@ -401,7 +404,7 @@ class ModContentImageHelper {
 	 * @return array
 	 */
 	protected static function getContactInfo($id) {
-		$db = ModContentImageHelper::getDBO();
+		$db = self::getDBO();
 		$query = $db->getQuery(true)
 			->select('cd.id, cd.name, cd.alias, c.title as cat_title, c.alias as cat_alias')
 			->from('#__contact_details cd, #__categories c')
